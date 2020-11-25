@@ -1,7 +1,6 @@
 # Blog Posting Web App
 ### This is a simple blog posting web application.
 
-
 <h3>Runtime Platform: NodeJS</h3>
 <h3>Framework used: Express</h3>
 
