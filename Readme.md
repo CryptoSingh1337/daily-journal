@@ -33,4 +33,4 @@ npm install
 node app.js
 ```
 
-Open [http://localhost:3000](http://localhost:3000) and take a look around.
+Open [http://localhost:8080](http://localhost:8080) and take a look around.
