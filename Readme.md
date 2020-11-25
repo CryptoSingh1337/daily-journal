@@ -3,10 +3,8 @@ This is a simple blog posting web application.
 
 ---
 
-### Runtime Platform: NodeJS
-### Framework used: Express
-
----
+#### Runtime Platform: NodeJS
+#### Framework used: Express
 
 ## Dependencies:
 <ul>
