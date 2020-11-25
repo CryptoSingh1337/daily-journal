@@ -3,7 +3,7 @@
 
 Runtime Platform: NodeJS<br>
 Framework used: Express<br>
-<a href="https://daily-general.herokuapp.com/">Daily-General</a>
+Link: <a href="https://daily-general.herokuapp.com/">Daily-General</a>
 
 ## Dependencies:
 <ul>
