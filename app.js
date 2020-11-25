@@ -1,8 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const ejs = require("ejs");
+// const ejs = require("ejs");
 const _ = require("lodash");
-const post = require(__dirname + "/post.js");
+const post = require(__dirname + "/Post.js");
 const port = 8080;
 
 const posts = [];
@@ -58,6 +58,6 @@ app.use((req, res, next) => {
   res.render("error404");
 })
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log("Server is running on port: " + port);
 });
