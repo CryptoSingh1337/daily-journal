@@ -1,17 +1,16 @@
 # Blog Posting Web App
-This is a simple blog posting web application.
+### This is a simple blog posting web application.
 
----
 
-#### Runtime Platform: NodeJS
-#### Framework used: Express
+<h3>Runtime Platform: NodeJS</h3>
+<h3>Framework used: Express</h3>
 
 ## Dependencies:
 <ul>
-    <li>express         v4.17.1</li>
-    <li>body-parser     v1.19.0</li>
-    <li>ejs             v3.1.5</li>
-    <li>lodash          v4.17.20</li>
+    <li>express-         v4.17.1</li>
+    <li>body-parser-     v1.19.0</li>
+    <li>ejs-             v3.1.5</li>
+    <li>lodash-          v4.17.20</li>
 </ul>
 
 ---
