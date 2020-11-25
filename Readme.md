@@ -1,8 +1,9 @@
 # Blog Posting Web App
 ### This is a simple blog posting web application.
 
-Runtime Platform: NodeJS
-Framework used: Express
+Runtime Platform: NodeJS<br>
+Framework used: Express<br>
+<a href="https://daily-general.herokuapp.com/">Daily-General</a>
 
 ## Dependencies:
 <ul>
