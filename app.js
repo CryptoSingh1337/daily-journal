@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const _ = require("lodash");
 const dbHandling = require("./DB/dbHandling");
 const port = 8080;
-const url = "mongodb+srv://***REMOVED***:***REMOVED***-password@cluster0.msjrw.mongodb.net/blogPostDB";
+const url = "mongodb+srv://<Removed>:<Removed>@cluster0.msjrw.mongodb.net/blogPostDB";
 
 const app = express();
 
