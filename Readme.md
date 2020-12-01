@@ -3,6 +3,7 @@
 
 Runtime Platform: NodeJS<br>
 Framework used: Express<br>
+Database used: MongoDB Atlas<br>
 Link: <a href="https://daily-general.herokuapp.com/">Daily-General</a>
 
 ## Dependencies:
@@ -11,6 +12,7 @@ Link: <a href="https://daily-general.herokuapp.com/">Daily-General</a>
     <li>body-parser-     v1.19.0</li>
     <li>ejs-             v3.1.5</li>
     <li>lodash-          v4.17.20</li>
+    <li>mongoose-        v5.10.17"</li>
 </ul>
 
 ---
