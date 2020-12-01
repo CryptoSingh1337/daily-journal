@@ -1,14 +1,13 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-// const ejs = require("ejs");
 const _ = require("lodash");
-const post = require(__dirname + "/Post.js");
+const dbHandling = require("./DB/dbHandling");
 const port = 8080;
-
-const posts = [];
+const url = "mongodb://localhost:27017/blogPostDB";
 
 const app = express();
 
+dbHandling.connect(url);
 app.set("view engine", "ejs");
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,7 +19,8 @@ const aboutContent = "Hac habitasse platea dictumst vestibulum rhoncus est pelle
 
 const contactContent = "Scelerisque eleifend donec pretium vulputate sapien. Rhoncus urna neque viverra justo nec ultrices. Arcu dui vivamus arcu felis bibendum. Consectetur adipiscing elit duis tristique. Risus viverra adipiscing at in tellus integer feugiat. Sapien nec sagittis aliquam malesuada bibendum arcu vitae. Consequat interdum varius sit amet mattis. Iaculis nunc sed augue lacus. Interdum posuere lorem ipsum dolor sit amet consectetur adipiscing elit. Pulvinar elementum integer enim neque. Ultrices gravida dictum fusce ut placerat orci nulla. Mauris in aliquam sem fringilla ut morbi tincidunt. Tortor posuere ac ut consequat semper viverra nam libero.";
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
+  const posts = await dbHandling.getPosts();
   res.render("home", { _homeContent: homeStartingContent, _posts: posts });
 });
 
@@ -37,24 +37,36 @@ app.get("/compose", (req, res) => {
 });
 
 app.post("/compose", (req, res) => {
-  const title = req.body.postTitle;
+  const title = _.capitalize(_.lowerCase(req.body.postTitle));
   const body = req.body.postBody;
-  posts.push(post.getPost(title, body));
+  dbHandling.savePost(title, body);
   res.redirect("/");
 });
 
-app.get("/posts/:post_name", (req, res) => {
-  const _postTitle = req.params.post_name;
-  const currPost = post.findPost(_.lowerCase(_postTitle), ...posts);
-  if (currPost !== null) {
-    res.render("post", { postTitle: currPost.postTitle, postBody: currPost.postBody });
+app.get("/delete/:post_name", (req, res) => {
+  const _postTitle = _.lowerCase(req.params.post_name);
+  const deletedPost = dbHandling.deletePost(_.capitalize(_postTitle));
+  if (deletedPost === null) {
+    console.log("No Post is deleted");
   } else {
-    res.render("error404");
+    console.log("Post Deleted");
+  }
+  res.redirect("/");
+});
+
+app.get("/posts/:post_title", async (req, res) => {
+  const _postTitle = _.capitalize(_.lowerCase(req.params.post_title));
+  console.log(_postTitle);
+  const currPost = await dbHandling.findPost(_postTitle);
+  if (currPost !== null) {
+    res.render("post", { postTitle: currPost.title, postBody: currPost.body });
+  } else {
+    res.render("error404", { error: "404 - The Post can't be found" });
   }
 });
 
 app.get("*", (req, res) => {
-  res.render("error404");
+  res.render("error404", { error: "404 - The Page can't be found" });
 })
 
 app.listen(process.env.PORT || port, () => {
