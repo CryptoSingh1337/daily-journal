@@ -37,8 +37,8 @@ exports.savePost = function (title, body) {
     });
 }
 
-exports.findPost = function(_title) {
-    return Post.findOne({title: _title}, (err, found) => {
+exports.findPost = function(postID) {
+    return Post.findOne({_id: postID}, (err, found) => {
         if(err) {
             console.log("Error Occurred in finding the post!" + "\n" + err.message);
             throw err;
@@ -48,8 +48,8 @@ exports.findPost = function(_title) {
     })
 }
 
-exports.deletePost = function(title) {
-    Post.findOneAndDelete({title: title}, (err, res) => {
+exports.deletePost = function(postID) {
+    Post.findOneAndDelete({_id: postID}, (err, res) => {
         if(err) {
             console.log("Post not Deleted" + err.message);
             throw err;

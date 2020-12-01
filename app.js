@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const _ = require("lodash");
 const dbHandling = require("./DB/dbHandling");
 const port = 8080;
-const url = "mongodb+srv://<Removed>:<Removed>@cluster0.msjrw.mongodb.net/blogPostDB";
+const url = "mongodb+srv://***REMOVED***:***REMOVED***-password@cluster0.msjrw.mongodb.net/blogPostDB";
 
 const app = express();
 
@@ -43,9 +43,9 @@ app.post("/compose", (req, res) => {
   res.redirect("/");
 });
 
-app.get("/delete/:post_name", (req, res) => {
-  const _postTitle = _.lowerCase(req.params.post_name);
-  const deletedPost = dbHandling.deletePost(_.capitalize(_postTitle));
+app.get("/delete/:post_id", (req, res) => {
+  const _postID = req.params.post_id;
+  const deletedPost = dbHandling.deletePost(_postID);
   if (deletedPost === null) {
     console.log("No Post is deleted");
   } else {
@@ -54,9 +54,9 @@ app.get("/delete/:post_name", (req, res) => {
   res.redirect("/");
 });
 
-app.get("/posts/:post_title", async (req, res) => {
-  const _postTitle = _.capitalize(_.lowerCase(req.params.post_title));
-  const currPost = await dbHandling.findPost(_postTitle);
+app.get("/posts/:post_id", async (req, res) => {
+  const _postID = req.params.post_id;
+  const currPost = await dbHandling.findPost(_postID);
   if (currPost !== null) {
     res.render("post", { postTitle: currPost.title, postBody: currPost.body });
   } else {
