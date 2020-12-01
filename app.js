@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const _ = require("lodash");
 const dbHandling = require("./DB/dbHandling");
 const port = 8080;
-const url = "mongodb://localhost:27017/blogPostDB";
+const url = "mongodb+srv://***REMOVED***:***REMOVED***-password@cluster0.msjrw.mongodb.net/blogPostDB";
 
 const app = express();
 
@@ -56,7 +56,6 @@ app.get("/delete/:post_name", (req, res) => {
 
 app.get("/posts/:post_title", async (req, res) => {
   const _postTitle = _.capitalize(_.lowerCase(req.params.post_title));
-  console.log(_postTitle);
   const currPost = await dbHandling.findPost(_postTitle);
   if (currPost !== null) {
     res.render("post", { postTitle: currPost.title, postBody: currPost.body });
